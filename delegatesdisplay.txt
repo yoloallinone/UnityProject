@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Del1
+{
+    public delegate void DelEventHandler();
+    public class Program
+    {
+
+        
+        public static event DelEventHandler add;
+
+        public static void Main(string[] args)
+        {
+            
+            add += new DelEventHandler(display1);
+            add += new DelEventHandler(display2);
+            
+
+            
+            add.Invoke();
+            Console.ReadLine();
+        }
+        static void display1()
+        {
+            Console.WriteLine("del2");
+        }
+
+        static void display2()
+        {
+            Console.WriteLine("del3");
+        }
+
+        
+    }
+}

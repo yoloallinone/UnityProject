@@ -1,0 +1,96 @@
+Default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    from date
+<asp:TextBox ID="txtfrom"
+runat="server"></asp:TextBox>
+<br />
+<br />
+to date
+<asp:TextBox ID="txtto"
+runat="server"></asp:TextBox>
+<br />
+<br />
+<br />
+<asp:Button ID="Button1" runat="server"
+onclick="Button1_Click" Text="Button" />
+<br />
+<br />
+<br />
+<br />
+<asp:TextBox ID="TextBox3" runat="server"
+Height="118px" TextMode="MultiLine"
+Width="176px"></asp:TextBox>
+
+    </div>
+    </form>
+</body>
+</html>
+
+
+Default.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender,
+EventArgs e)
+{
+DateTime FromYear = Convert.ToDateTime(txtfrom.Text);
+DateTime ToYear = Convert.ToDateTime(txtto.Text);
+//Creating object of TimeSpan Class
+TimeSpan objTimeSpan = ToYear - FromYear;
+//years
+int Years = ToYear.Year - FromYear.Year;
+//months
+int month = ToYear.Month - FromYear.Month;
+//TotalDays
+double Days =
+Convert.ToDouble(objTimeSpan.TotalDays);
+//Total Months
+int TotalMonths = (Years * 12) + month;
+//Total Hours
+double TotalHours = objTimeSpan.TotalHours;
+//Total Minutes
+double TotalMinutes = objTimeSpan.TotalMinutes;
+//Total Seconds
+double TotalSeconds = objTimeSpan.TotalSeconds;
+//Total Mile Seconds
+double TotalMileSeconds =
+objTimeSpan.TotalMilliseconds;
+//Assining values to td tags
+TextBox3.Text = Years + " Year " + month + "Months" + "\n";
+TextBox3.Text += "Total months "
++Convert.ToString(TotalMonths) + "\n";
+TextBox3.Text += "Total Days "
++Convert.ToString(Days) + "\n";
+TextBox3.Text += "Total Hours " +
+Convert.ToString(TotalHours) + "\n";
+TextBox3.Text += "Total Minutes" +
+Convert.ToString(TotalMinutes) + "\n";
+TextBox3.Text += "Total Seconds" +
+Convert.ToString(TotalSeconds) + "\n";
+TextBox3.Text += "Total Miliseconds" +
+Convert.ToString(TotalMileSeconds) + "\n";
+}
+}

@@ -1,0 +1,96 @@
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        
+        <asp:DropDownList ID="DropDownList1" runat="server" 
+            onselectedindexchanged="DropDownList1_SelectedIndexChanged1">
+        </asp:DropDownList><br /><br />
+        <asp:DropDownList ID="DropDownList2" runat="server" 
+            onselectedindexchanged="DropDownList2_SelectedIndexChanged">
+        </asp:DropDownList>
+
+    </div>
+    </form>
+</body>
+</html>
+
+
+.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            string filePath =
+            Server.MapPath("~/XMLFile.xml");
+            DataSet ds = new DataSet();
+            ds.ReadXml(filePath);
+            DropDownList1.DataSource = ds;
+            DropDownList1.DataTextField = "ename";
+            DropDownList1.DataBind();
+            
+            DropDownList2.DataSource = ds;
+            DropDownList2.DataValueField = "eid";
+           
+            DropDownList2.DataBind();
+        }
+    }
+    
+    protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+        Response.Write("u have selected text" +
+       DropDownList1.SelectedItem + "<br>");
+        Response.Write("u have selected id " +
+        DropDownList1.SelectedValue);
+
+    }
+    protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Response.Write("u have selected text" +
+       DropDownList1.SelectedItem + "<br>");
+        Response.Write("u have selected id " +
+        DropDownList1.SelectedValue);
+    }
+}
+
+
+xml
+<?xml version="1.0" encoding="utf-8" ?>
+<employees>
+  <emp>
+    <eid>1</eid>
+    <ename>sim</ename>
+    <edept>IT</edept>
+    <salary>20000</salary>
+  </emp>
+  <emp>
+    <eid>2</eid>
+    <ename>anu</ename>
+    <edept>CS</edept>
+    <salary>19000</salary>
+  </emp>
+  <emp>
+    <eid>3</eid>
+    <ename>vis</ename>
+    <edept>HR</edept>
+    <salary>15000</salary>
+  </emp>
+</employees>

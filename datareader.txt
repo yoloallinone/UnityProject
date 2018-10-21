@@ -1,0 +1,81 @@
+Program.cs
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+
+
+namespace ArrayOfStructures
+{
+
+    class Program
+    {
+
+        struct Student
+        {
+
+            public string studid, name, cname;
+
+            public int day, month, year;
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            Student[] s = new Student[3];
+
+            int i;
+
+            for (i = 0; i < s.Length; i++)
+            {
+
+                Console.WriteLine("Enter Student ID:");
+
+                s[i].studid = Console.ReadLine();
+
+                Console.WriteLine("Enter Student Name:");
+
+                s[i].name = Console.ReadLine();
+
+                Console.WriteLine("Enter Student Course Name:");
+
+                s[i].cname = Console.ReadLine();
+
+                Console.WriteLine("Enter Date of Birth\n Enter day(1-31):");
+
+                s[i].day = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Enter month(1-12):");
+
+                s[i].month = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Enter year :");
+
+                s[i].year = Convert.ToInt32(Console.ReadLine());
+
+            }
+
+            for (i = 0; i < s.Length; i++)
+            {
+
+                Console.WriteLine("Student ID :" + s[i].studid);
+
+                Console.WriteLine("Student Name:" + s[i].name);
+
+                Console.WriteLine("Date Of Birth:" + s[i].day + "-" + s[i].month + "-" + s[i].year);
+
+            }
+
+            Console.ReadKey();
+
+        }
+
+    }
+
+}

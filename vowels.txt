@@ -1,0 +1,82 @@
+Fibonacci, Prime Numbers, Vowels, Reverse Numbers
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Prac1C
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n1 = 0, n2 = 1, n3, i, number;
+            Console.Write("\nEnter the number of elements for fibonacci series: ");
+            number = int.Parse(Console.ReadLine());
+            if (number != 0 && number != 1)
+            {
+                Console.Write(n1 + " " + n2 + " ");
+                for (i = 2; i < number; ++i)
+                {
+                    n3 = n1 + n2;
+                    Console.Write(n3 + " ");
+                    n1 = n2;
+                    n2 = n3;
+                }
+            }
+            else if (number == 1)
+                Console.Write(n1);
+            else if (number == 0)
+                Console.WriteLine("\nEnter any positive number greater then 0.");
+            int n, m = 0, flag = 0;
+            Console.Write("\nEnter the Number to check Prime: ");
+            n = int.Parse(Console.ReadLine());
+            m = n / 2;
+            for (i = 2; i <= m; i++)
+            {
+                if (n % i == 0)
+                {
+                    Console.Write("\nNumber is not Prime.");
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+                Console.Write("\nNumber is Prime.");
+            Console.Write("\nEnter an Alphabet:");
+            char ch = Convert.ToChar(Console.ReadLine().ToLower());
+            switch (ch)
+            {
+                case 'a':
+                    Console.WriteLine("It is vowel");
+                    break;
+                case 'i':
+                    Console.WriteLine("It is vowel");
+                    break;
+                case 'o':
+                    Console.WriteLine("It is vowel");
+                    break;
+                case 'u':
+                    Console.WriteLine("It is vowel");
+                    break;
+                case 'e':
+                    Console.WriteLine("It is vowel");
+                    break;
+                default:
+                    Console.WriteLine("It Is Not Vowel");
+                    break;
+            }
+            int reverse = 0, rem, sum = 0;
+            Console.Write("\nEnter a number: ");
+            n = int.Parse(Console.ReadLine());
+            while (n != 0)
+            {
+                rem = n % 10;
+                reverse = reverse * 10 + rem;
+                n /= 10;
+            }
+            Console.Write("\nReversed Number: " + reverse);
+            Console.ReadKey();
+        }
+    }
+}

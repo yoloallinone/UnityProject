@@ -1,0 +1,46 @@
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:ScriptManager runat="server" ID="MainScriptManager" />
+<asp:TextBox ID="TextBox1" runat="server" Height="210px" TextMode="MultiLine"
+Width="683px"></asp:TextBox>
+<ajaxToolkit:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server"
+EnableSanitization="False" TargetControlID="TextBox1">
+<Toolbar>
+<ajaxToolkit:Undo />
+<ajaxToolkit:Redo />
+<ajaxToolkit:Cut />
+<ajaxToolkit:Copy />
+<ajaxToolkit:Paste />
+<ajaxToolkit:Bold />
+<ajaxToolkit:Italic />
+<ajaxToolkit:Underline />
+<ajaxToolkit:StrikeThrough />
+<ajaxToolkit:Subscript />
+<ajaxToolkit:Superscript />
+<ajaxToolkit:JustifyLeft />
+<ajaxToolkit:JustifyCenter />
+<ajaxToolkit:JustifyRight />
+<ajaxToolkit:JustifyFull />
+<ajaxToolkit:SelectAll />
+<ajaxToolkit:BackgroundColorSelector />
+<ajaxToolkit:ForeColorSelector />
+<ajaxToolkit:FontNameSelector />
+<ajaxToolkit:Indent />
+<ajaxToolkit:Outdent />
+</Toolbar>
+</ajaxToolkit:HtmlEditorExtender>
+</div>
+</form>
+</body>
+</html>
+

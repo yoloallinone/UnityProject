@@ -1,0 +1,72 @@
+table with records and retrieve those using Disconnected data access
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<h2>Grid View</h2>
+<asp:Button ID="Button1" runat="server" Text="Show Grid View!" onclick="Button1_Click" />
+<br />
+<br/>
+<asp:GridView ID="GridView1" runat="server" Height="179px" Width="247px">
+</asp:GridView>
+</div>
+</form>
+</body>
+</html>
+
+
+Default.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string connStr = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
+        SqlConnection con = new SqlConnection(connStr);
+        SqlCommand objCmd = new SqlCommand("select * from test2", con);
+        SqlDataAdapter objDa = new SqlDataAdapter();
+        DataSet objDs = new DataSet();
+        objCmd.CommandType = CommandType.Text;
+        objDa.SelectCommand = objCmd;
+        objDa.Fill(objDs, "test2");
+        GridView1.DataSource = objDs.Tables[0];
+        GridView1.DataBind();
+    }
+}
+
+
+web.config
+<?xml version="1.0"?>
+
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+
+<configuration>
+
+    <system.web>
+        <compilation debug="false" targetFramework="4.0" />
+    </system.web>
+  <connectionStrings>
+    <add name="connstr" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename='e:\Simrata\Documents\Visual Studio 2010\WebSites\WebSite8\App_Data\Database.mdf';Integrated Security=True;User Instance=True"/>
+  </connectionStrings>
+</configuration>

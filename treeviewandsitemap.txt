@@ -1,0 +1,213 @@
+default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        Treeview control navigation:
+        <asp:TreeView ID = "TreeView1" runat = "server" Width =
+"150px" ImageSet="Arrows">
+<HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+<Nodes>
+<asp:TreeNode Text = "ASP.NET Practs" Value = "New Node">
+<asp:TreeNode Text = "Calendar Control" Value = "RED" NavigateUrl="~/calndrCtrl.aspx">
+</asp:TreeNode>
+<asp:TreeNode Text = "Constructor Overloading" Value = "GREEN"
+NavigateUrl="~/clsconstrc.aspx"> </asp:TreeNode>
+<asp:TreeNode NavigateUrl="~/singleInh.aspx" Text="Inheritance"
+Value="BLUE"></asp:TreeNode>
+<asp:TreeNode NavigateUrl="~/clsProp.aspx" Text="Class Properties" Value="Class
+Properties"></asp:TreeNode>
+</asp:TreeNode>
+</Nodes>
+<NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black"
+HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+<ParentNodeStyle Font-Bold="False" />
+<SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD"
+HorizontalPadding="0px" VerticalPadding="0px" />
+</asp:TreeView>
+<br />
+Fetch Datalist Using XML data : </div>
+<asp:DataList ID="DataList1" runat="server">
+<ItemTemplate>
+<table class = "table" border="1">
+<tr>
+<td>Roll Num : <%# Eval("sid") %><br />
+Name : <%# Eval("sname") %><br />
+Class : <%# Eval("sclass")%>
+</td>
+</tr>
+</table>
+</ItemTemplate>
+</asp:DataList>
+
+<asp:SiteMapPath ID="SiteMapPath1" runat="server" 
+            Font-Names="Verdana" Font-Size="0.8em" Height="40px" PathSeparator=" : " >
+            <CurrentNodeStyle Font-Size="Larger"                 Height="20px" />
+            <NodeStyle Font-Bold="True" ForeColor="#284E98" />
+            <PathSeparatorStyle Font-Bold="True" ForeColor="#507CD1" />
+            <RootNodeStyle Font-Bold="True" ForeColor="#507CD1" />
+        
+
+        </asp:SiteMapPath>
+        <br/>
+         <asp:Label ID="Label1" runat="server" Text="This is a Site Map example" 
+            Font-Size="Larger"></asp:Label>
+    
+        <br />
+    
+        <br />
+    
+    </div>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/myweb1.aspx">Click Here to go to web page 1</asp:HyperLink>
+    
+    &nbsp;&nbsp;
+    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/myweb2.aspx">Click Here to go to web page 2</asp:HyperLink>
+    
+
+    </div>
+    </form>
+</body>
+</html>
+
+
+default.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+using System.Data;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            BindData();
+        }
+    }
+    protected void BindData()
+    {
+        DataSet ds = new DataSet();
+        ds.ReadXml(Server.MapPath("XMLFile.xml"));
+        if (ds != null && ds.HasChanges())
+        {
+            DataList1.DataSource = ds;
+            DataList1.DataBind();
+        }
+        else
+        {
+            DataList1.DataBind();
+        }
+    }
+}
+
+
+xml file
+
+<?xml version="1.0" encoding="utf-8" ?>
+<studentdetail>
+  <student>
+    <sid>1</sid>
+    <sname>Tushar</sname>
+    <sclass>TYIT</sclass>
+  </student>
+  <student>
+    <sid>2</sid>
+    <sname>Sonali</sname>
+    <sclass>TYCS</sclass>
+  </student>
+  <student>
+    <sid>3</sid>
+    <sname>Yashashree</sname>
+    <sclass>TYIT</sclass>
+  </student>
+  <student>
+    <sid>4</sid>
+    <sname>Vedshree</sname>
+    <sclass>TYCS</sclass>
+  </student>
+</studentdetail>
+
+
+
+myweb1.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="myweb1.aspx.cs" Inherits="myweb1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Arial Black" 
+            Font-Size="Large" 
+            Text="Thank you for clicking.This is My First Webpage.............."></asp:Label>
+        <br />
+        <br />
+                     <asp:Label ID="Label2" runat="server" Text="SiteMap:"></asp:Label>
+             
+        <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+        </asp:SiteMapPath>
+        <br />
+        <br />        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/myweb2.aspx">click here to go to mywebpage2</asp:HyperLink>
+    </div>
+    </form>
+</body>
+</html>
+
+
+myweb2.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="myweb2.aspx.cs" Inherits="myweb2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+</head>
+<body>
+      <form id="form1" runat="server">
+      <div>    
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Arial Black" 
+                   Font-Size="Large" 
+                   Text="Thanx for Clicking.This is my Second webpage by using SiteMapPath control.................">
+            </asp:Label>
+      </div>
+      <p> 
+            <asp:Label ID="Label2" runat="server" Text="SiteMap: "></asp:Label>
+                      <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+            </asp:SiteMapPath>
+      </p>
+      <p>&nbsp;</p>
+     
+     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">Click here to go to Home page</asp:HyperLink>&nbsp;
+    
+     </form>
+</body>
+</html>
+
+
+web.sitemap
+
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="" title=""  description="">
+        <siteMapNode url="" title=""  description="" />
+        <siteMapNode url="" title=""  description="" />
+    </siteMapNode>
+</siteMap>

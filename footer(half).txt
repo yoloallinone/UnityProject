@@ -1,0 +1,43 @@
+Default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<%@ Register TagPrefix="Asp" TagName="Footer"
+Src="~/Footer.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+</div>
+<div>
+<Asp:Footer id="f1" runat="server"></Asp:Footer>
+    </div>
+    </form>
+</body>
+</html>
+
+
+Footer.ascx
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Footer.ascx.cs" Inherits="Footer" %>
+<asp:Label ID="lblf" runat="server" Text="Label"></asp:Label>
+
+Footer.ascx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Footer : System.Web.UI.UserControl
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        lblf.Text = "Copy right by Microsoft corporation";
+    }
+}

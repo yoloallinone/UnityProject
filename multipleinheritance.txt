@@ -1,0 +1,73 @@
+Multiple Inheritance
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication6
+{
+    class Furniture
+    {
+        string material;
+        float price;
+        public void getData()
+        {
+            Console.WriteLine("Enter Material: ");
+            material = Console.ReadLine();
+            Console.WriteLine("Enter Price: ");
+            price = float.Parse(Console.ReadLine());
+        }
+        public void setData()
+        {
+            Console.WriteLine("Material is " + material);
+            Console.WriteLine("Price is Rs." + price);
+        }
+    }
+    class Table : Furniture
+    {
+        float height;
+        float surfaceArea;
+        public void getData()
+        {
+            base.getData();
+            Console.WriteLine("Enter Height of the Table in inches: ");
+            height = float.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Surface Area of the Table: ");
+            surfaceArea = float.Parse(Console.ReadLine());
+        }
+        public void setData()
+        {
+            base.setData();
+            Console.WriteLine("Height of the Table is " + height + " inches");
+            Console.WriteLine("Surface Area of the Table is " + surfaceArea + " sq.cm");
+        }
+    }
+    class DinningTable : Table
+    {
+        int noOfChairs;
+        public void getData()
+        {
+            base.getData();
+            Console.WriteLine("Enter Number of Chairs Required: ");
+            noOfChairs = Convert.ToInt32(Console.ReadLine());
+        }
+        public void setData()
+        {
+            base.setData();
+            Console.WriteLine("Number of Chairs: " + noOfChairs);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DinningTable t = new DinningTable();
+            Console.WriteLine("Enter details for Dinning Table: ");
+            t.getData();
+            t.setData();
+            Console.ReadKey();
+        }
+    }
+}
+
+

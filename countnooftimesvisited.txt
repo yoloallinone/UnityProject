@@ -1,0 +1,83 @@
+Default.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click1(object sender, EventArgs e)
+    {
+        Application["x"] =
+        Convert.ToInt32(Application["x"]) + 1;
+        //count++;
+        Label1.Text = "web page submitted " +
+        Application["x"].ToString();
+    }
+}
+
+Default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><br /><br />
+        <asp:Button ID="Button1" runat="server" Text="Button" 
+            onclick="Button1_Click1" />
+    </div>
+    </form>
+</body>
+</html>
+
+
+Global.asax
+
+
+<%@ Application Language="C#" %>
+<script runat="server">
+void Application_Start(object sender, EventArgs
+e)
+{
+// Code that runs on application startup
+Application["x"] = 0;
+}
+void Application_End(object sender, EventArgs e)
+{
+// Code that runs on application shutdown
+}
+void Application_Error(object sender, EventArgs
+e)
+{
+// Code that runs when an unhandled error
+//occurs
+}
+void Session_Start(object sender, EventArgs e)
+{
+// Code that runs when a new session is
+//started
+}
+void Session_End(object sender, EventArgs e)
+{
+// Code that runs when a session ends.
+// Note: The Session_End event is raised
+//only when the sessionstate mode
+// is set to InProc in the Web.config file.
+//If session mode is set to StateServer
+// or SQLServer, the event is not raised.
+}
+</script>

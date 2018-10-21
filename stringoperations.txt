@@ -1,0 +1,34 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace StringOp
+{
+    class StringOperations
+    {
+        static void Main(string[] args)
+        {
+            string s1 = "student";
+            string s2 = "details";
+            Console.WriteLine("\nString s1= " + s1);
+            Console.WriteLine("\nString s2= " + s2);
+            Console.WriteLine("\nIndex of s1= " + s1.IndexOf("s"));
+            Console.WriteLine("\nLast Index of s1= " + s1.LastIndexOf('a'));
+            Console.WriteLine("\nLength of the String s1= " + s1.Length);
+            Console.WriteLine("\nUppercase String s1= " + s1.ToUpper());
+            Console.WriteLine("\nLowercase String s2= " + s2.ToLower());
+            Console.WriteLine("\nPadleft= " + s1.PadLeft(10, '@'));
+            Console.WriteLine("\nPadright= " + s2.PadRight(10, '@'));
+            Console.WriteLine("\nTrimmed String s1= " + s1.Trim());
+            Console.WriteLine("\nSubString s1= " + s1.Substring(0, 2));
+            Console.WriteLine("\nReplaced String s1= " + s1.Replace("li", "at"));
+            Console.WriteLine("\nRemoved element of String s1= " + s1.Remove(2));
+            Console.WriteLine("\nDoes the string s1 start with 'Z'?= " + s1.StartsWith("Z"));
+            Console.WriteLine("\nDoes the string s2 end with 'Z'?= " + s1.EndsWith("Z"));
+            Console.WriteLine("\nThe string s1 after inserting = " + s1.Insert(6, "Queen"));
+            Console.ReadKey();
+        }
+    }
+}

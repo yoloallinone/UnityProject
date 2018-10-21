@@ -1,0 +1,118 @@
+Default.aspx
+
+
+<%@ Page Language="C#" AutoEventWireup="true"
+CodeFile="Default.aspx.cs" Inherits="Default" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
+Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:Button ID="Button1" runat="server"
+onclick="Button1_Click" Text="Read" />
+<br />
+<asp:Label ID="Label1" runat="server"
+Text="Label"></asp:Label>
+<br />
+<br />
+student details
+<br />
+<br />
+<asp:Button ID="Button2" runat="server"
+onclick="Button2_Click" Text="write" />
+<br />
+<br />
+name<asp:TextBox ID="TextBox1"
+runat="server"></asp:TextBox>
+<br />
+<br />
+roll no<asp:TextBox ID="TextBox2"
+runat="server"></asp:TextBox>
+<br />
+<br />
+<br />
+<br />
+</div>
+</form>
+</body>
+</html>
+
+
+XMLFile.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<student>
+  <name>hello</name>
+  <rollno>112</rollno>
+  <student>
+    <name>sim</name>
+    <rollno>67</rollno>
+  </student>
+  <student>
+    <name>henil</name>
+    <rollno>75</rollno>
+  </student>
+  <student>
+    <name>sim</name>
+    <rollno>67</rollno>
+  </student>
+</student>
+
+
+
+Default.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
+public partial class Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender,
+    EventArgs e)
+    {
+    }
+    protected void Button1_Click(object sender,
+    EventArgs e) // for reading xml file
+    {
+        string path =
+        Server.MapPath("~/XMLFile.xml");
+        XmlReader xr = XmlReader.Create(path);
+        string st = "";
+        while (xr.Read())
+        {
+            if (xr.NodeType.Equals(XmlNodeType.Text))
+            {
+                st = st + xr.Value + "<br>";
+            }
+        }
+        Label1.Text = st;
+        xr.Close();
+    }
+    protected void Button2_Click(object sender,
+    EventArgs e) // for write
+    {
+        XmlDocument x = new XmlDocument();
+        x.Load(Server.MapPath("~/XMLFile.xml"));
+        XmlElement p = x.CreateElement("student");
+        XmlElement xna = x.CreateElement("name");
+        xna.InnerText = TextBox1.Text;
+        XmlElement xrn = x.CreateElement("rollno");
+        xrn.InnerText = TextBox2.Text;
+        p.AppendChild(xna);
+        p.AppendChild(xrn);
+        x.DocumentElement.AppendChild(p);
+        x.Save(Server.MapPath("~/XMLFile.xml"));
+        Response.Write("Record inserted in file ");
+    }
+}

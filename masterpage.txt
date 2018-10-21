@@ -1,0 +1,185 @@
+add a skin file.
+
+default.aspx
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"  Theme = "SkinFile" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    your content goes here<br />
+&nbsp;<asp:ListBox ID="ListBox1" runat="server">
+        <asp:ListItem>BMS</asp:ListItem>
+        <asp:ListItem>BScIT</asp:ListItem>
+        <asp:ListItem>BMM</asp:ListItem>
+    </asp:ListBox>
+
+
+
+    <br />
+    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Show" />
+    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="Hide" />
+    <br />
+
+
+
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="AdditionalContent" Runat="Server">
+
+additional content
+</asp:Content>
+ 
+ 
+ default.aspx.cs
+ 
+ using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        MasterPage master = (MasterPage)this.Master;
+        master.ShowNavigationControls = true;
+
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        MasterPage master = (MasterPage)this.Master;
+        master.ShowNavigationControls = false;
+
+    }
+}
+
+
+
+masterpage.master
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+       body
+       {
+           width:80%;
+           
+           }
+    .Header
+{         position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 60px;
+            text-align: center;
+            background-color:Aqua;
+            width:100%;
+            text-align:center;
+}
+.LeftPanel
+{
+            position: absolute;
+            top: 100px;
+            left: 10px;
+            /*width: 160px;*/
+            background-color: #C0C0C0;
+              width:10%;
+              height:200px;
+        }
+.RightPanel
+{
+            position: absolute;
+            top: 100px;
+            right: 10px;
+            /*width: 160px;*/
+              width:10%;
+            background-color: #9999FF;
+            height:200px;
+        }
+.CenterPanel
+{
+            position: absolute;
+            top: 100px;
+            margin-left: 175px;
+            margin-right: 180px;
+            background-color: #99FFCC;
+            width:70%;
+            height:200px;
+        }
+
+    
+    </style>
+</head>
+<body >
+  
+<form id = "form1" runat = "server">
+<div class = "Header">
+<h1> My Header</h1>
+</div>
+<div class = "LeftPanel">
+<asp:TreeView ID = "TreeView1" runat = "server" Width = "150px">
+<Nodes>
+<asp:TreeNode Text = "Root" Value = "New Node">
+<asp:TreeNode Text = "Page 1" Value = "Page 1"> </asp:TreeNode>
+<asp:TreeNode Text = "Page 2" Value = "Page 2"> </asp:TreeNode>
+</asp:TreeNode>
+</Nodes>
+</asp:TreeView>
+</div>
+<div class = "CenterPanel">
+<asp:ContentPlaceHolder id = "MainContent" runat = "server">
+
+</asp:ContentPlaceHolder>
+</div>
+<div class = "RightPanel">
+<asp:ContentPlaceHolder id = "AdditionalContent" runat = "server"> </asp:ContentPlaceHolder>
+</div>
+</form>
+</body>
+</html>
+
+
+masterpage.master.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class MasterPage : System.Web.UI.MasterPage
+{
+    public bool ShowNavigationControls
+    {
+        get
+        {
+            return TreeView1.Visible;
+        }
+        set
+        {
+            TreeView1.Visible = value;
+        }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+}
+
+
